@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from phone_field import PhoneField
 from datetime import datetime
 from django.db.models.signals import pre_save, post_save
@@ -37,7 +37,7 @@ class MyAccountManager(BaseUserManager):
 		user.save(using=self._db)
 		return user
 
-class Account(AbstractBaseUser):
+class Account(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(verbose_name="email",
 		max_length=60, unique=True)
     username = models.CharField(max_length=100, unique=True)
@@ -69,12 +69,6 @@ class Account(AbstractBaseUser):
 
     def __str__(self):
         return self.first_name + ' ' + self.middle_name + ' ' + self.last_name
-
-    def has_perm(self, perm, obj=None):
-        return self.is_admin
-
-    def has_module_perms(self, app_label):
-        return True
 
 #Call the signal to remove old picture file
 pre_save.connect(remove_old_file, sender=Account)

@@ -7,6 +7,7 @@ from django.views.static import serve
 from django.contrib.auth import views as auth_views
 from checkin import views as views_from_checkin
 from connect.views import connectview
+from connect.admin import connectadmin
 
 admin.site.site_header = "Open Check In Administration"
 admin.site.site_title = "Administration Portal"
@@ -34,4 +35,5 @@ urlpatterns = [
     path('ajax/checkyouth/createQR/', views_from_checkin.createQR.as_view(), name='ajax_call_createQR'),
     path('ajax/checkyouth/guardianPreCheck/', views_from_checkin.GuardianPreCheck.as_view(), name='ajax_call_guardianPreCheck'),
     path('connect/', connectview, name="digitalconnect"),
+    path('connectadmin/', connectadmin.urls),
 ]
