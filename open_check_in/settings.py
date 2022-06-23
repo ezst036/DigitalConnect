@@ -28,8 +28,8 @@ ALLOWED_HOSTS = ['127.0.0.1', '192.168.0.19', '192.168.3.164']
 
 INSTALLED_APPS = [
     'checkin.apps.CheckinConfig',
-    'account',
     'connect',
+    'account',
     'phone_field',
     'django.contrib.admin',
     'django.contrib.auth',

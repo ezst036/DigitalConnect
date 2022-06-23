@@ -5,4 +5,7 @@ class ConnectForm(forms.ModelForm):
     
     class Meta:
         model = ContactConnect
-        fields = ['title', 'body']
+        fields = ['first_name', 'last_name', 'messagetype', 'title', 'body']
+        labels = {
+            'messagetype': 'Select message: ',
+        }
